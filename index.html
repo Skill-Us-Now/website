@@ -5,44 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skill Us Now – Wir bauen zusammen</title>
   <meta name="description" content="Das Community-Projekt von Skill Me Now: Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte.">
+  <link rel="preload" href="assets/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/stadt.css">
 </head>
 <body>
-  <header class="kopf">
-    <div class="balken"></div>
-    <h1>Skill <span>Us</span> Now</h1>
-    <p class="lead">Das Community-Projekt von Skill Me Now. Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte – jedes unter seiner eigenen Adresse.</p>
-    <p class="zahl" id="zahl">&nbsp;</p>
+  <header class="buehne">
+    <div class="innen">
+      <nav class="leiste" aria-label="Hauptnavigation">
+        <a class="logo" href="./">Skill <span>Us</span> Now</a>
+        <div class="nav">
+          <a href="anleitung/">Anleitung</a>
+          <a class="knopf hell" href="/start">Meine Projekte</a>
+        </div>
+      </nav>
+      <h1>Wir bauen zusammen.</h1>
+      <p class="lead">Das Community-Projekt von Skill Me Now. Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte – jedes unter seiner eigenen Adresse.</p>
+      <div class="cta">
+        <a class="knopf" href="/start">Eigenes Projekt anlegen</a>
+        <a class="knopf rand" href="anleitung/">So funktioniert’s</a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <h2>Die Projekte</h2>
-    <section class="stadt" id="projekte">
+  <main class="innen">
+    <div class="projekte-kopf">
+      <h2>Die Projekte</h2>
+      <p class="zahl" id="zahl">&nbsp;</p>
+    </div>
+    <section class="stadt" id="projekte" aria-live="polite">
       <p class="leer">Projekte werden geladen …</p>
     </section>
 
     <section class="mitmachen">
-      <h2>Mitmachen</h2>
-      <p>Du bist Teilnehmerin, Teilnehmer oder im Team von Skill Me Now? Dann kannst du hier eigene Projekte veröffentlichen.
-        In der <a href="anleitung/">Schritt-für-Schritt-Anleitung</a> erfährst du, wie es geht – für Mac und Windows, mit Claude oder ChatGPT.</p>
+      <div>
+        <h2>Mitmachen</h2>
+        <p>Du bist Teilnehmerin, Teilnehmer oder im Team von Skill Me Now? Dann kannst du hier eigene Projekte veröffentlichen.
+          Die <a href="anleitung/">Schritt-für-Schritt-Anleitung</a> zeigt dir, wie es geht – für Mac und Windows, mit Claude oder ChatGPT.</p>
+      </div>
+      <a class="knopf" href="/start">Projekt anlegen</a>
     </section>
   </main>
 
-  <footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a> · <a href="anleitung/">Anleitung</a> · Code auf <a href="https://github.com/Skill-Us-Now/website">GitHub</a></footer>
+  <footer>
+    <div class="innen">
+      <span>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a></span>
+      <span><a href="anleitung/">Anleitung</a> · Code auf <a href="https://github.com/Skill-Us-Now/website">GitHub</a></span>
+    </div>
+  </footer>
 
   <script>
-    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    // Projektliste von /api/projekte.json – Inhalte nur als Text einsetzen, nie als HTML
+    const el = (tag, klasse, ...kinder) => {
+      const e = document.createElement(tag);
+      if (klasse) e.className = klasse;
+      e.append(...kinder);
+      return e;
+    };
     const datum = (iso) => new Date(iso).toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+    const FARBEN = ["mag", "blau", "himmel", "nacht"];
+    const farbe = (slug) => FARBEN[[...slug].reduce((s, c) => s + c.charCodeAt(0), 0) % FARBEN.length];
+
+    function kachel(p) {
+      const a = el("a", "haus-kachel");
+      a.href = p.url; a.target = "_blank"; a.rel = "noopener";
+      const dach = el("span", `dach ${farbe(p.slug)}`, (p.titel.trim()[0] || "?").toUpperCase());
+      dach.setAttribute("aria-hidden", "true");
+      a.append(
+        dach,
+        el("span", "inhalt",
+          el("strong", "", p.titel),
+          el("span", "adresse", p.url.replace("https://", "")),
+          el("span", "beschreibung", p.beschreibung),
+          el("span", "von", `von ${p.von} · seit ${datum(p.erstellt)}`)));
+      return a;
+    }
+
     fetch("/api/projekte.json").then((r) => r.json()).then((liste) => {
-      document.getElementById("zahl").innerHTML = liste.length === 1 ? "<b>1</b> Projekt ist online" : `<b>${liste.length}</b> Projekte sind online`;
-      document.getElementById("projekte").innerHTML = liste.length ? liste.map((p) => `
-        <a class="haus-kachel" href="${esc(p.url)}" target="_blank" rel="noopener">
-          <strong>${esc(p.titel)}</strong>
-          <span class="adresse">${esc(p.url.replace("https://", ""))}</span>
-          <small>${esc(p.beschreibung)}</small>
-          <span class="von">von ${esc(p.von)} · online seit ${datum(p.erstellt)}</span>
-        </a>`).join("") : '<p class="leer">Noch keine Projekte – bald geht\'s los.</p>';
-    }).catch(() => { document.getElementById("projekte").innerHTML = '<p class="leer">Projekte konnten gerade nicht geladen werden.</p>'; });
+      document.getElementById("zahl").textContent = liste.length === 1 ? "1 Projekt ist online" : `${liste.length} Projekte sind online`;
+      const ziel = document.getElementById("projekte");
+      ziel.replaceChildren(...(liste.length ? liste.map(kachel) : [el("p", "leer", "Noch keine Projekte – bald geht’s los.")]));
+    }).catch(() => {
+      document.getElementById("projekte").replaceChildren(el("p", "leer", "Projekte konnten gerade nicht geladen werden."));
+    });
   </script>
 </body>
 </html>

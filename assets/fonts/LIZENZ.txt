@@ -1,0 +1,4 @@
+Fredoka (Variable, latin-Teilmenge)
+Copyright 2016 The Fredoka Project Authors (https://github.com/hafontia-zz/Fredoka)
+Lizenz: SIL Open Font License 1.1 – https://openfontlicense.org
+Selbst gehostet, damit beim Laden der Seite keine Verbindung zu Google entsteht.

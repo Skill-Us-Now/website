@@ -1,30 +1,88 @@
-/* Startseite (Stadtplan). Änderungen nur nach Absprache im Issue. */
-:root { --bg:#f7f7fb; --ink:#0b1b3f; --muted:#5b6478; --mag:#e6007e; --blue:#0b3a8e; --sky:#3fb6f0; --card:#fff; }
-@media (prefers-color-scheme: dark) { :root { --bg:#0b1020; --ink:#eef1f8; --muted:#a3abc2; --card:#141a2e; } }
-* { box-sizing:border-box; }
-body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Inter, sans-serif; background:var(--bg); color:var(--ink); }
-.kopf { display:flex; flex-direction:column; align-items:center; text-align:center; padding:64px 16px 24px; }
-.balken { height:6px; width:min(560px,100%); border-radius:99px; background:linear-gradient(90deg,var(--mag),var(--blue),var(--sky)); margin-bottom:36px; }
-h1 { margin:0; font-size:clamp(2.4rem,7vw,4rem); letter-spacing:-.02em; line-height:1.05; }
-h1 span { background:linear-gradient(90deg,var(--mag),var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.lead { margin:18px 0 0; font-size:1.15rem; color:var(--muted); max-width:560px; line-height:1.55; }
-.zahl { color:var(--muted); margin-top:14px; }
-.zahl b { color:var(--ink); }
-main { max-width:960px; margin:0 auto; padding:16px 16px 40px; }
-h2 { font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
-.stadt { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
-.haus-kachel { display:flex; flex-direction:column; gap:4px; background:var(--card); border-radius:18px; padding:20px 18px; text-decoration:none; color:inherit; box-shadow:0 2px 14px rgba(11,27,63,.06); transition:transform .15s, box-shadow .15s; }
-.haus-kachel:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(11,27,63,.12); }
-.haus-kachel .emoji { font-size:2rem; }
-.haus-kachel small { color:var(--muted); line-height:1.4; }
-.haus-kachel.neu { border:2px dashed color-mix(in oklab, var(--muted) 40%, transparent); box-shadow:none; background:transparent; }
-footer { text-align:center; color:var(--muted); font-size:.85rem; padding:24px 16px 48px; }
-footer a { color:inherit; }
-.haus-kachel .adresse { color:var(--blue); font-size:.85rem; font-weight:600; }
-@media (prefers-color-scheme: dark) { .haus-kachel .adresse { color:var(--sky); } }
-.haus-kachel .von { color:var(--muted); font-size:.8rem; margin-top:6px; }
-.leer { color:var(--muted); }
-.mitmachen { margin-top:48px; max-width:640px; }
-.mitmachen p { color:var(--muted); line-height:1.6; }
-.mitmachen a, main a { color:var(--blue); }
-@media (prefers-color-scheme: dark) { .mitmachen a, main a { color:var(--sky); } }
+/* Startseite (Projektübersicht). Änderungen nur nach Absprache im Issue. */
+@font-face { font-family: "Fredoka"; src: url("fonts/fredoka-latin.woff2") format("woff2"); font-weight: 300 700; font-stretch: 75% 125%; font-display: swap; }
+:root {
+  --grund: #f4f5fb; --karte: #fff; --tinte: #0b1b3f; --leise: #56607a; --linie: #e1e4f0;
+  --mag: #e6007e; --mag-tief: #c4006b; --blau: #0b3a8e; --nacht: #0a1f5c; --himmel: #3fb6f0;
+  --schatten: 0 2px 4px rgba(0, 0, 0, 0.04), 0 10px 28px rgba(0, 0, 0, 0.08);
+  --schatten-hoch: 0 6px 14px rgba(0, 0, 0, 0.08), 0 22px 44px rgba(0, 0, 0, 0.14);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --grund: #0a1020; --karte: #131a30; --tinte: #eef1f8; --leise: #a6aec6; --linie: #273153; --blau: #8fb2ff;
+    --schatten: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 30px rgba(0, 0, 0, 0.35); --schatten-hoch: 0 6px 14px rgba(0, 0, 0, 0.35), 0 22px 44px rgba(0, 0, 0, 0.45); }
+}
+* { box-sizing: border-box; }
+html { background: var(--grund); }
+body { margin: 0; font: 400 1.0625rem/1.55 "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--grund); color: var(--tinte); }
+::selection { background: var(--mag); color: #fff; }
+a { color: var(--blau); text-underline-offset: 0.2em; }
+:focus-visible { outline: 3px solid var(--mag); outline-offset: 3px; border-radius: 8px; }
+.innen { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+
+/* Kopf */
+.buehne {
+  position: relative; overflow: hidden; color: #fff; padding: 24px 0 120px;
+  background:
+    radial-gradient(620px 380px at 90% 0%, rgba(230, 0, 126, 0.55), transparent 70%),
+    radial-gradient(540px 360px at 0% 110%, rgba(63, 182, 240, 0.45), transparent 70%),
+    linear-gradient(160deg, var(--nacht), #0b3a8e 72%);
+  /* der Skill-Us-Now-Balken als untere Kante */
+  border-bottom: 6px solid transparent;
+  border-image: linear-gradient(90deg, var(--mag), #0b3a8e, var(--himmel)) 1;
+}
+.leiste { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.logo { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em; }
+.logo span { color: #ffa3d1; }
+.nav { display: flex; align-items: center; gap: 8px 20px; }
+.nav > a:not(.knopf) { color: #fff; text-decoration: none; font-weight: 500; }
+.nav > a:not(.knopf):hover { text-decoration: underline; }
+.buehne h1 { margin: 72px 0 0; font-size: clamp(2.8rem, 8vw, 5.4rem); line-height: 0.95; font-weight: 600; letter-spacing: -0.025em; max-width: 12ch; }
+.lead { margin: 22px 0 0; max-width: 46ch; font-size: clamp(1.1rem, 1.8vw, 1.3rem); color: rgba(255, 255, 255, 0.88); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 24px;
+  border-radius: 99px; background: var(--mag); color: #fff; font-weight: 600; text-decoration: none;
+  transition: background-color 0.15s, transform 0.15s;
+}
+.knopf:hover { background: var(--mag-tief); }
+.knopf:active { transform: translateY(1px); }
+.knopf.rand { background: transparent; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7); }
+.knopf.rand:hover { background: rgba(255, 255, 255, 0.12); }
+.knopf.hell { min-height: 40px; padding: 8px 18px; background: rgba(255, 255, 255, 0.16); }
+.knopf.hell:hover { background: rgba(255, 255, 255, 0.28); }
+
+/* Projekte */
+main.innen { margin-top: -72px; position: relative; padding-bottom: 64px; }
+.projekte-kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 16px; color: #fff; }
+.projekte-kopf h2 { margin: 0; font-size: 1.6rem; font-weight: 600; }
+.zahl { margin: 0; color: rgba(255, 255, 255, 0.85); }
+.stadt { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 20px; align-items: stretch; }
+.haus-kachel {
+  display: flex; flex-direction: column; overflow: hidden; background: var(--karte); border: 1px solid var(--linie); border-radius: 22px;
+  color: inherit; text-decoration: none; box-shadow: var(--schatten); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+}
+.haus-kachel:hover { transform: translateY(-4px); box-shadow: var(--schatten-hoch); }
+.dach { display: grid; place-items: center; height: 112px; font-size: 3.4rem; font-weight: 700; line-height: 1; color: #fff; }
+.dach.mag { background: var(--mag); }
+.dach.blau { background: #0b3a8e; }
+.dach.himmel { background: var(--himmel); color: var(--nacht); }
+.dach.nacht { background: var(--nacht); color: #ff6fb8; }
+.inhalt { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px 20px; flex: 1; }
+.inhalt strong { font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
+.adresse { color: var(--blau); font-size: 0.9rem; font-weight: 600; word-break: break-all; }
+.beschreibung { margin-top: 6px; color: var(--leise); line-height: 1.45; }
+.von { margin-top: auto; padding-top: 12px; color: var(--leise); font-size: 0.85rem; }
+.leer { grid-column: 1 / -1; margin: 0; padding: 36px; text-align: center; color: var(--leise); background: var(--karte); border: 1.5px dashed var(--linie); border-radius: 22px; }
+
+.mitmachen {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; margin-top: 56px;
+  padding: 32px; border-radius: 26px; background: var(--karte); border: 1px solid var(--linie); box-shadow: var(--schatten);
+}
+.mitmachen > div { flex: 1 1 420px; }
+.mitmachen h2 { margin: 0 0 8px; font-size: 1.6rem; font-weight: 600; }
+.mitmachen p { margin: 0; color: var(--leise); max-width: 62ch; }
+
+footer { padding: 28px 0 44px; border-top: 1px solid var(--linie); color: var(--leise); font-size: 0.92rem; }
+footer .innen { display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
+footer a { color: inherit; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
