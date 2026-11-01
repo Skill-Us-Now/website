@@ -3,8 +3,10 @@
 //         node scripts/pruefen.mjs datei1 …   → prüft nur diese geänderten Dateien (GitHub-Prüfung)
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { extname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT = new URL("..", import.meta.url).pathname;
+// fileURLToPath statt .pathname: sonst wird aus Leerzeichen im Pfad „%20“ und es wird nichts gefunden
+const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const MAX_HAUS = 5 * 1024 * 1024;
 const ERLAUBT = new Set([".html", ".css", ".js", ".json", ".md", ".txt", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".avif", ".ico", ".woff", ".woff2", ".mp3", ".mp4", ".webm"]);
 const GEHEIM = [

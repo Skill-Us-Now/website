@@ -5,19 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anleitung · Skill Us Now</title>
   <meta name="description" content="Schritt für Schritt zum eigenen Web-Projekt auf skillusnow.de – für Mac und Windows, mit Claude oder ChatGPT.">
+  <link rel="preload" href="../assets/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/anleitung.css">
 </head>
 <body>
-<a class="zurueck" href="../">← Zur Übersicht</a>
-<main>
-  <div class="balken"></div>
-  <h1>Dein eigenes Web-Projekt in 6 Schritten</h1>
+<header class="buehne">
+  <div class="innen">
+    <nav class="leiste" aria-label="Hauptnavigation">
+      <a class="logo" href="../">Skill <span>Us</span> Now</a>
+      <div class="nav">
+        <a href="../">Alle Projekte</a>
+        <a class="knopf hell" href="/start">Meine Projekte</a>
+      </div>
+    </nav>
+    <h1>Dein eigenes Web-Projekt in 6 Schritten</h1>
   <p class="lead">Du bekommst eine eigene Adresse wie <b>gewichttracker.skillusnow.de</b> und baust dort mit deiner KI eine Webseite, ein kleines Tool oder ein Spiel. Keine Vorkenntnisse nötig – nimm dir beim ersten Mal etwa 20 Minuten Zeit.</p>
+  </div>
+</header>
+<main>
 
   <div class="system-wahl">
     <span>Dein Computer:</span>
-    <button data-os="mac" class="aktiv">🍎 Mac</button>
-    <button data-os="win">🪟 Windows</button>
+    <button data-os="mac" class="aktiv">Mac</button>
+    <button data-os="win">Windows</button>
   </div>
 
   <section class="kasten">
@@ -40,7 +50,7 @@
   <div class="os win"><div class="befehl"><code>ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div>
     <p class="hinweis">Kommt „ssh-keygen wurde nicht erkannt“? Dann: Einstellungen → System → Optionale Features → Feature hinzufügen → <b>OpenSSH-Client</b> installieren, PowerShell neu öffnen.</p></div>
   <p>Das Terminal fragt nach einem <b>Passwort (passphrase)</b>: Drücke einfach zweimal <kbd>Enter</kbd>, damit deine KI später ohne Nachfrage arbeiten kann.</p>
-  <p class="warnung">🔒 Den <b>geheimen Teil</b> (die Datei <code>skillusnow</code> <i>ohne</i> .pub) gibst du niemals weiter – auch nicht an eine KI im Browser.</p>
+  <p class="warnung"><b>Wichtig:</b> Den <b>geheimen Teil</b> (die Datei <code>skillusnow</code> <i>ohne</i> .pub) gibst du niemals weiter – auch nicht an eine KI im Browser.</p>
 
   <h2 class="schritt"><span>3</span> Den öffentlichen Teil kopieren</h2>
   <p>Dieser Befehl legt den öffentlichen Teil in deine Zwischenablage:</p>
@@ -96,6 +106,10 @@
     <dd>Lade die Seite ohne Zwischenspeicher neu: Mac <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>R</kbd>, Windows <kbd>Strg</kbd> + <kbd>F5</kbd>.</dd>
     <dt>Meine KI hat etwas kaputt gemacht</dt>
     <dd>Kein Problem: Jede Nacht wird alles gesichert. Melde dich beim Team, wir holen den Stand vom Vortag zurück.</dd>
+    <dt>Kann ich mein Projekt umbenennen?</dt>
+    <dd>Ja. Klicke auf <a href="/start">skillusnow.de/start</a> bei deinem Projekt auf „Bearbeiten“: Titel, Beschreibung und Adresse lassen sich ändern. Die alte Adresse leitet 30 Tage auf die neue weiter. Wichtig: Dein SSH-Zugang heißt danach anders (<code>p-</code> plus neuer Name) – gib deiner KI den neuen Befehl.</dd>
+    <dt>Wie lösche ich ein Projekt?</dt>
+    <dd>Löschen können Admins und Dozenten. Melde dich beim Team – vom gelöschten Projekt bleibt 30 Tage eine Sicherheitskopie auf dem Server.</dd>
     <dt>Kann ich Server-Programme, Datenbanken oder Logins bauen?</dt>
     <dd>Hier laufen nur Webseiten (HTML, CSS, JavaScript). Daten kannst du im Browser speichern (localStorage). Alles läuft also beim Besucher – das reicht für erstaunlich viele Tools und Spiele.</dd>
   </dl>
@@ -105,7 +119,12 @@
     <p>Dein Projekt ist <b>öffentlich</b>. Nichts Illegales, auf Urheberrechte achten (selbst gemacht, KI-generiert oder frei nutzbar), keine Daten anderer ohne Einwilligung, keine Passwörter oder Schlüssel in deinen Dateien. Die vollständigen Regeln bestätigst du beim Anlegen.</p>
   </section>
 </main>
-<footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a></footer>
+<footer>
+  <div class="innen">
+    <span>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a></span>
+    <span><a href="../">Alle Projekte</a> · <a href="/start">Meine Projekte</a></span>
+  </div>
+</footer>
 <script>
   const setzeOS = (os) => {
     document.body.dataset.os = os;
@@ -117,7 +136,7 @@
   document.querySelectorAll(".system-wahl button").forEach((b) => b.onclick = () => setzeOS(b.dataset.os));
   document.querySelectorAll(".kopieren").forEach((b) => b.onclick = () => {
     navigator.clipboard.writeText(b.previousElementSibling.textContent);
-    b.textContent = "Kopiert ✓"; setTimeout(() => (b.textContent = "Kopieren"), 1600);
+    b.textContent = "Kopiert"; setTimeout(() => (b.textContent = "Kopieren"), 1600);
   });
 </script>
 </body>

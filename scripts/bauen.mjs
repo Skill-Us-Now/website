@@ -2,7 +2,9 @@
 // Die Projektliste lädt die Startseite selbst von /api/projekte.json.
 import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
-const ROOT = new URL("..", import.meta.url).pathname;
+import { fileURLToPath } from "node:url";
+// fileURLToPath statt .pathname: sonst wird aus Leerzeichen im Pfad „%20“ und es wird nichts gefunden
+const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
