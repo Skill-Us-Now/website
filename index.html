@@ -4,28 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skill Us Now – Wir bauen zusammen</title>
-  <meta name="description" content="Das Community-Projekt von Skill Me Now: Eine Website, an der alle mit ihrer eigenen KI mitbauen.">
+  <meta name="description" content="Das Community-Projekt von Skill Me Now: Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte.">
   <link rel="stylesheet" href="assets/stadt.css">
 </head>
 <body>
   <header class="kopf">
     <div class="balken"></div>
     <h1>Skill <span>Us</span> Now</h1>
-    <p class="lead">Das Community-Projekt von Skill Me Now. Jede und jeder baut ein eigenes Haus – mit der eigenen KI. Zusammen wird daraus eine Stadt.</p>
-    <p class="zahl"><!-- ANZAHL --></p>
+    <p class="lead">Das Community-Projekt von Skill Me Now. Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte – jedes unter seiner eigenen Adresse.</p>
+    <p class="zahl" id="zahl">&nbsp;</p>
   </header>
 
   <main>
-    <h2>Die Stadt</h2>
-    <section class="stadt"><!-- HAEUSER -->
-      <a class="haus-kachel neu" href="https://github.com/Skill-Us-Now/website#so-machst-du-mit--in-5-schritten">
-        <span class="emoji">➕</span>
-        <strong>Dein Haus</strong>
-        <small>So machst du mit</small>
-      </a>
+    <h2>Die Projekte</h2>
+    <section class="stadt" id="projekte">
+      <p class="leer">Projekte werden geladen …</p>
+    </section>
+
+    <section class="mitmachen">
+      <h2>Mitmachen</h2>
+      <p>Du bist Teilnehmerin, Teilnehmer oder im Team von Skill Me Now? Dann kannst du hier eigene Projekte veröffentlichen.
+        In der <a href="anleitung/">Schritt-für-Schritt-Anleitung</a> erfährst du, wie es geht – für Mac und Windows, mit Claude oder ChatGPT.</p>
     </section>
   </main>
 
-  <footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a> · Code auf <a href="https://github.com/Skill-Us-Now/website">GitHub</a></footer>
+  <footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a> · <a href="anleitung/">Anleitung</a> · Code auf <a href="https://github.com/Skill-Us-Now/website">GitHub</a></footer>
+
+  <script>
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const datum = (iso) => new Date(iso).toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+    fetch("/api/projekte.json").then((r) => r.json()).then((liste) => {
+      document.getElementById("zahl").innerHTML = liste.length === 1 ? "<b>1</b> Projekt ist online" : `<b>${liste.length}</b> Projekte sind online`;
+      document.getElementById("projekte").innerHTML = liste.length ? liste.map((p) => `
+        <a class="haus-kachel" href="${esc(p.url)}" target="_blank" rel="noopener">
+          <strong>${esc(p.titel)}</strong>
+          <span class="adresse">${esc(p.url.replace("https://", ""))}</span>
+          <small>${esc(p.beschreibung)}</small>
+          <span class="von">von ${esc(p.von)} · online seit ${datum(p.erstellt)}</span>
+        </a>`).join("") : '<p class="leer">Noch keine Projekte – bald geht\'s los.</p>';
+    }).catch(() => { document.getElementById("projekte").innerHTML = '<p class="leer">Projekte konnten gerade nicht geladen werden.</p>'; });
+  </script>
 </body>
 </html>
