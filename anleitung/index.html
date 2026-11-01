@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anleitung · Skill Us Now</title>
+  <meta name="description" content="Schritt für Schritt zum eigenen Web-Projekt auf skillusnow.de – für Mac und Windows, mit Claude oder ChatGPT.">
+  <link rel="stylesheet" href="../assets/anleitung.css">
+</head>
+<body>
+<a class="zurueck" href="../">← Zur Übersicht</a>
+<main>
+  <div class="balken"></div>
+  <h1>Dein eigenes Web-Projekt in 6 Schritten</h1>
+  <p class="lead">Du bekommst eine eigene Adresse wie <b>gewichttracker.skillusnow.de</b> und baust dort mit deiner KI eine Webseite, ein kleines Tool oder ein Spiel. Keine Vorkenntnisse nötig – nimm dir beim ersten Mal etwa 20 Minuten Zeit.</p>
+
+  <div class="system-wahl">
+    <span>Dein Computer:</span>
+    <button data-os="mac" class="aktiv">🍎 Mac</button>
+    <button data-os="win">🪟 Windows</button>
+  </div>
+
+  <section class="kasten">
+    <h2>Was du brauchst</h2>
+    <ul>
+      <li>Dein <b>Skill-Me-Now-Konto</b> (dieselbe E-Mail-Adresse wie im Campus). Mitmachen können nur Teilnehmende und das Team.</li>
+      <li>Einen <b>Mac</b> oder einen <b>Windows-PC</b> (Windows 10 oder 11).</li>
+      <li>Eine <b>KI</b>. Am einfachsten: <b>Claude Code</b>, <b>Codex</b> oder <b>Cursor</b> – die arbeiten direkt auf deinem Projekt. <b>ChatGPT</b> oder <b>Claude im Browser</b> gehen auch, dann kopierst du die Dateien selbst hoch (Schritt 6 B).</li>
+    </ul>
+  </section>
+
+  <h2 class="schritt"><span>1</span> Das Terminal öffnen</h2>
+  <p>Das Terminal ist ein Fenster, in das du Befehle tippst. Keine Sorge – du kopierst sie nur von hier.</p>
+  <div class="os mac"><p><b>Mac:</b> Drücke <kbd>⌘</kbd> + <kbd>Leertaste</kbd>, tippe <b>Terminal</b> und drücke Enter.</p></div>
+  <div class="os win"><p><b>Windows:</b> Klicke auf Start, tippe <b>PowerShell</b> und öffne „Windows PowerShell“.</p></div>
+
+  <h2 class="schritt" id="schluessel"><span>2</span> Deinen Schlüssel erzeugen</h2>
+  <p>Statt eines Passworts nutzt du einen <b>Schlüssel</b>. Er besteht aus zwei Teilen: einem <b>geheimen Teil</b>, der auf deinem Computer bleibt, und einem <b>öffentlichen Teil</b>, den du uns gibst – wie ein Schloss, zu dem nur du den Schlüssel hast. Kopiere diesen Befehl ins Terminal und drücke Enter. Ersetze <code>dein-name</code> durch deinen Vornamen.</p>
+  <div class="os mac"><div class="befehl"><code>ssh-keygen -t ed25519 -f ~/.ssh/skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div></div>
+  <div class="os win"><div class="befehl"><code>ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div>
+    <p class="hinweis">Kommt „ssh-keygen wurde nicht erkannt“? Dann: Einstellungen → System → Optionale Features → Feature hinzufügen → <b>OpenSSH-Client</b> installieren, PowerShell neu öffnen.</p></div>
+  <p>Das Terminal fragt nach einem <b>Passwort (passphrase)</b>: Drücke einfach zweimal <kbd>Enter</kbd>, damit deine KI später ohne Nachfrage arbeiten kann.</p>
+  <p class="warnung">🔒 Den <b>geheimen Teil</b> (die Datei <code>skillusnow</code> <i>ohne</i> .pub) gibst du niemals weiter – auch nicht an eine KI im Browser.</p>
+
+  <h2 class="schritt"><span>3</span> Den öffentlichen Teil kopieren</h2>
+  <p>Dieser Befehl legt den öffentlichen Teil in deine Zwischenablage:</p>
+  <div class="os mac"><div class="befehl"><code>pbcopy &lt; ~/.ssh/skillusnow.pub</code><button class="kopieren">Kopieren</button></div></div>
+  <div class="os win"><div class="befehl"><code>Get-Content $env:USERPROFILE\.ssh\skillusnow.pub | Set-Clipboard</code><button class="kopieren">Kopieren</button></div></div>
+  <p>Er sieht ungefähr so aus: <code>ssh-ed25519 AAAAC3Nza…lange Zeichenkette… dein-name</code>. Ein <code>/</code> oder <code>+</code> darin ist normal.</p>
+
+  <h2 class="schritt"><span>4</span> Dein Projekt anlegen</h2>
+  <ol>
+    <li>Öffne <a href="/start" target="_blank"><b>skillusnow.de/start</b></a> und melde dich mit deiner Campus-E-Mail an. Du bekommst einen Code per Mail.</li>
+    <li>Gib deinem Projekt einen <b>Titel</b> (daraus wird die Adresse) und beschreibe in einem Satz, <b>was es können soll</b>.</li>
+    <li>Füge bei „SSH-Schlüssel“ den öffentlichen Teil ein (<kbd>⌘</kbd>/<kbd>Strg</kbd> + <kbd>V</kbd>).</li>
+    <li>Lies die <b>Nutzungsregeln</b>, setze den Haken und klicke „Projekt anlegen“.</li>
+  </ol>
+  <p>Danach siehst du deinen <b>Projektnamen</b> (z. B. <code>p-gewichttracker</code>) und einen fertigen <b>Auftrag für deine KI</b>. Pro Person sind 2 Projekte mit je 1 GB möglich.</p>
+
+  <h2 class="schritt"><span>5</span> Verbindung testen</h2>
+  <p>Ersetze <code>p-gewichttracker</code> durch deinen Projektnamen:</p>
+  <div class="befehl"><code>ssh -i ~/.ssh/skillusnow p-gewichttracker@skillusnow.de</code><button class="kopieren">Kopieren</button></div>
+  <p>Beim ersten Mal fragt das Terminal „Are you sure you want to continue connecting?“ – tippe <b>yes</b> und Enter. Siehst du <code>p-gewichttracker@skillusnow:~$</code>, bist du drin. Mit <code>exit</code> kommst du wieder raus.</p>
+
+  <h2 class="schritt"><span>6</span> Mit deiner KI bauen</h2>
+  <div class="zwei">
+    <section class="kasten">
+      <h3>A · Claude Code, Codex oder Cursor</h3>
+      <p>Diese KIs arbeiten <b>direkt</b> auf deinem Projekt:</p>
+      <ol>
+        <li>Starte die KI auf deinem Computer.</li>
+        <li>Füge den <b>Auftrag</b> von skillusnow.de/start ein.</li>
+        <li>Die KI verbindet sich, liest die Regeln (AGENTS.md) und baut deine Seite im Ordner <code>www/</code>.</li>
+        <li>Öffne deine Adresse im Browser – jede Änderung ist sofort sichtbar.</li>
+      </ol>
+      <p class="hinweis">Fragt die KI, ob sie einen Befehl ausführen darf, lies kurz mit und bestätige. So lernst du nebenbei, was passiert.</p>
+    </section>
+    <section class="kasten">
+      <h3>B · ChatGPT oder Claude im Browser</h3>
+      <p>Diese KIs können nicht selbst auf den Server. Du lädst die Dateien hoch:</p>
+      <ol>
+        <li>Bitte die KI: „Baue mir eine Webseite: … Gib mir alle Dateien einzeln aus, die Startseite heißt index.html.“</li>
+        <li>Lege auf deinem Computer einen Ordner <b>mein-projekt</b> an und speichere die Dateien dort.</li>
+        <li>Öffne das Terminal <b>in diesem Ordner</b> und lade alles hoch:</li>
+      </ol>
+      <div class="befehl"><code>scp -i ~/.ssh/skillusnow -r mein-projekt/. p-gewichttracker@skillusnow.de:www/</code><button class="kopieren">Kopieren</button></div>
+      <p class="hinweis">Gibt es eine ältere Datei mit gleichem Namen, wird sie überschrieben.</p>
+    </section>
+  </div>
+
+  <h2>Wenn etwas nicht klappt</h2>
+  <dl class="faq">
+    <dt>„Permission denied (publickey)“</dt>
+    <dd>Der Schlüssel passt nicht. Prüfe den Projektnamen (mit <code>p-</code> davor) und ob du in Schritt 3 den Inhalt der <code>.pub</code>-Datei kopiert hast. Hilft das nicht, melde dich beim Team.</dd>
+    <dt>Ich sehe meine Änderung nicht</dt>
+    <dd>Lade die Seite ohne Zwischenspeicher neu: Mac <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>R</kbd>, Windows <kbd>Strg</kbd> + <kbd>F5</kbd>.</dd>
+    <dt>Meine KI hat etwas kaputt gemacht</dt>
+    <dd>Kein Problem: Jede Nacht wird alles gesichert. Melde dich beim Team, wir holen den Stand vom Vortag zurück.</dd>
+    <dt>Kann ich Server-Programme, Datenbanken oder Logins bauen?</dt>
+    <dd>Hier laufen nur Webseiten (HTML, CSS, JavaScript). Daten kannst du im Browser speichern (localStorage). Alles läuft also beim Besucher – das reicht für erstaunlich viele Tools und Spiele.</dd>
+  </dl>
+
+  <section class="kasten regeln">
+    <h2>Die wichtigsten Regeln</h2>
+    <p>Dein Projekt ist <b>öffentlich</b>. Nichts Illegales, auf Urheberrechte achten (selbst gemacht, KI-generiert oder frei nutzbar), keine Daten anderer ohne Einwilligung, keine Passwörter oder Schlüssel in deinen Dateien. Die vollständigen Regeln bestätigst du beim Anlegen.</p>
+  </section>
+</main>
+<footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a></footer>
+<script>
+  const setzeOS = (os) => {
+    document.body.dataset.os = os;
+    document.querySelectorAll(".system-wahl button").forEach((b) => b.classList.toggle("aktiv", b.dataset.os === os));
+    try { localStorage.setItem("sun-os", os); } catch {}
+  };
+  let gemerkt = null; try { gemerkt = localStorage.getItem("sun-os"); } catch {}
+  setzeOS(gemerkt || (/Win/i.test(navigator.platform || navigator.userAgent) ? "win" : "mac"));
+  document.querySelectorAll(".system-wahl button").forEach((b) => b.onclick = () => setzeOS(b.dataset.os));
+  document.querySelectorAll(".kopieren").forEach((b) => b.onclick = () => {
+    navigator.clipboard.writeText(b.previousElementSibling.textContent);
+    b.textContent = "Kopiert ✓"; setTimeout(() => (b.textContent = "Kopieren"), 1600);
+  });
+</script>
+</body>
+</html>
