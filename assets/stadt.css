@@ -27,3 +27,4 @@ footer a { color:inherit; }
 .mitmachen { margin-top:48px; max-width:640px; }
 .mitmachen p { color:var(--muted); line-height:1.6; }
 .mitmachen a, main a { color:var(--blue); }
+@media (prefers-color-scheme: dark) { .mitmachen a, main a { color:var(--sky); } }
