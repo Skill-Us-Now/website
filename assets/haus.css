@@ -1,0 +1,11 @@
+/* Gemeinsame Grundgestaltung für alle Häuser. Jedes Haus darf sie überschreiben. */
+:root { --bg:#f7f7fb; --ink:#0b1b3f; --muted:#5b6478; --mag:#e6007e; --blue:#0b3a8e; --sky:#3fb6f0; --card:#fff; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0b1020; --ink:#eef1f8; --muted:#a3abc2; --card:#141a2e; } }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Inter, sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+.zurueck { display:inline-block; margin:20px; color:var(--muted); text-decoration:none; font-size:.95rem; }
+.zurueck:hover { color:var(--mag); }
+.haus { max-width:720px; margin:0 auto; padding:24px 16px 80px; }
+.haus-emoji { font-size:4rem; }
+.haus h1 { font-size:clamp(2rem,6vw,3rem); line-height:1.1; margin:.2em 0 .5em; }
+.haus p { color:var(--muted); font-size:1.1rem; }
