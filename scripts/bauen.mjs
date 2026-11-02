@@ -6,5 +6,5 @@ const ROOT = new URL("..", import.meta.url).pathname;
 const DIST = join(ROOT, "dist");
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
-for (const teil of ["index.html", "anleitung", "assets"]) if (existsSync(join(ROOT, teil))) cpSync(join(ROOT, teil), join(DIST, teil), { recursive: true });
+for (const teil of ["index.html", "anleitung", "impressum", "datenschutz", "assets"]) if (existsSync(join(ROOT, teil))) cpSync(join(ROOT, teil), join(DIST, teil), { recursive: true });
 console.log("✅ Seite gebaut → dist/");

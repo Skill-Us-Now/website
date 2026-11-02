@@ -25,7 +25,7 @@ const dateienIn = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e)
 });
 
 const argDateien = process.argv.slice(2).map((d) => join(ROOT, d)).filter((d) => existsSync(d));
-const zuPruefen = argDateien.length ? argDateien : ["index.html", "anleitung", "assets"].flatMap((t) => { const p = join(ROOT, t); return existsSync(p) ? (statSync(p).isDirectory() ? dateienIn(p) : [p]) : []; });
+const zuPruefen = argDateien.length ? argDateien : ["index.html", "anleitung", "impressum", "datenschutz", "assets"].flatMap((t) => { const p = join(ROOT, t); return existsSync(p) ? (statSync(p).isDirectory() ? dateienIn(p) : [p]) : []; });
 
 // 1. Jede Datei: erlaubter Typ, keine Geheimnisse
 for (const f of zuPruefen) {
