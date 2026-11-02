@@ -28,3 +28,7 @@ footer a { color:inherit; }
 .mitmachen p { color:var(--muted); line-height:1.6; }
 .mitmachen a, main a { color:var(--blue); }
 @media (prefers-color-scheme: dark) { .mitmachen a, main a { color:var(--sky); } }
+.knopf { display:inline-block; margin-top:22px; padding:13px 26px; border-radius:99px; background:var(--blue); color:#fff; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(11,58,142,.25); transition:transform .15s; }
+.knopf:hover { transform:translateY(-2px); }
+@media (prefers-color-scheme: dark) { .knopf { background:var(--sky); color:#0b1020; } }
+.knopf-hinweis { margin:8px 0 0; font-size:.85rem; color:var(--muted); }
