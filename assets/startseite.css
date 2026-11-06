@@ -1,0 +1,112 @@
+/* Startseite skillusnow.de – baut auf sun.css auf */
+
+/* ---------- Held: heller Grund mit Farbflecken und Linienwellen wie skillmenow.de ---------- */
+.held { position: relative; margin-top: -76px; padding: 150px 16px 96px; overflow: hidden;
+  background:
+    radial-gradient(42% 60% at 6% 12%, rgba(217, 70, 239, .16), transparent 70%),
+    radial-gradient(40% 55% at 96% 22%, rgba(14, 165, 233, .16), transparent 70%),
+    radial-gradient(36% 50% at 70% 100%, rgba(139, 92, 246, .10), transparent 70%),
+    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--leise) 22%, transparent) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--bg); }
+.wellen { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 72%; opacity: .45; pointer-events: none; }
+@media (prefers-color-scheme: dark) {
+  .held { background:
+    radial-gradient(42% 60% at 6% 12%, rgba(217, 70, 239, .22), transparent 70%),
+    radial-gradient(40% 55% at 96% 22%, rgba(14, 165, 233, .2), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, .12) 1px, transparent 0) 0 0 / 22px 22px, var(--bg); }
+  .wellen { opacity: .35; }
+}
+.held-innen { position: relative; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 56px; align-items: center; }
+.held h1 { margin: 0; font-size: clamp(2.5rem, 5.6vw, 4.4rem); line-height: 1.02; font-weight: 700; text-transform: uppercase; letter-spacing: -.005em; }
+/* Markenmerkmal von Skill Me Now: das farbige Schlusswort der Headline */
+.held h1 em { font-style: normal; display: block; background: var(--verlauf); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
+.lead { margin: 22px 0 0; font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text); max-width: 34em; line-height: 1.6; }
+.held-knoepfe { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.held-zahl { margin: 26px 0 0; font-size: .93rem; color: var(--leise); display: flex; align-items: center; gap: 10px; min-height: 1.5em; font-variant-numeric: tabular-nums; }
+.held-zahl b { color: var(--tinte); }
+.puls { width: 9px; height: 9px; border-radius: 50%; background: #10b981; position: relative; flex: none; }
+.puls::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #10b981; animation: puls 2.4s cubic-bezier(.16, 1, .3, 1) infinite; }
+@keyframes puls { from { transform: scale(1); opacity: .6; } to { transform: scale(3); opacity: 0; } }
+
+/* ---------- Anmeldekarte: Verlaufsrahmen wie der Trailer-Rahmen auf skillmenow.de ---------- */
+.login { position: relative; border-radius: 26px; padding: 2px; background: var(--verlauf); box-shadow: 0 30px 60px -24px rgba(15, 23, 42, .28), 0 12px 24px -12px rgba(15, 23, 42, .18); }
+.login-innen { background: var(--flaeche); border-radius: 24px; padding: 30px 30px 24px; }
+.login h2 { margin: 0 0 6px; font-size: 1.6rem; }
+.login .klein { margin: 0; }
+.eingabe-icon { position: relative; }
+.eingabe-icon .ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--leise); pointer-events: none; }
+.eingabe-icon input { padding-left: 42px; }
+.knopf.voll { width: 100%; margin-top: 14px; }
+.code-hinweis { margin: 0 0 4px; font-size: .92rem; padding: 12px 14px; border-radius: 12px; background: color-mix(in oklab, var(--himmel) 10%, transparent); color: var(--text); }
+.code-feld { font: 600 1.7rem/1 "Fredoka", sans-serif; letter-spacing: .45em; text-align: center; padding: 14px 0 14px .45em; font-variant-numeric: tabular-nums; }
+#f-code .textknopf { display: block; margin: 8px auto 0; }
+.login-fuss { display: flex; gap: 8px; align-items: center; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--linie); font-size: .84rem; color: var(--leise); }
+.ich-kopf { display: flex; gap: 14px; align-items: center; }
+.ich-kopf .avatar { width: 52px; height: 52px; font-size: 1.3rem; }
+.ich-kopf h2 { margin: 0; font-size: 1.4rem; }
+.ich-liste { list-style: none; margin: 20px 0 4px; padding: 0; display: grid; gap: 6px; }
+.ich-liste a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: var(--flaeche-2); text-decoration: none; color: var(--tinte); font-weight: 600; transition: background .2s, transform .25s cubic-bezier(.16, 1, .3, 1); }
+.ich-liste a:hover { transform: translateX(3px); background: color-mix(in oklab, var(--violett) 9%, var(--flaeche-2)); }
+.ich-titel { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ich-knoepfe { display: grid; gap: 0; }
+.ich-knoepfe .knopf.hell { margin-top: 10px; }
+#abmelden { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; }
+.avatar.mini { width: 30px; height: 30px; font-size: .8rem; }
+
+/* ---------- Abschnitte ---------- */
+.abschnitt { max-width: 1120px; margin: 0 auto; padding: 96px 16px 24px; }
+.abschnitt-kopf { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 40px; margin-bottom: 36px; }
+.abschnitt-kopf h2 { margin: 0; font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.1; }
+.abschnitt-kopf p { margin: 0; color: var(--leise); max-width: 30em; }
+
+/* ---------- Galerie mit Live-Vorschau ---------- */
+.galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 28px; }
+.projekt { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-radius: var(--r); background: var(--flaeche); border: 1px solid var(--linie); box-shadow: var(--schatten);
+  transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s cubic-bezier(.16, 1, .3, 1), border-color .3s; }
+.projekt .rahmen { margin: 8px 8px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--linie); }
+.projekt .vorschau { border-radius: 0; }
+.projekt .vorschau iframe { transition: opacity .6s ease, transform .6s cubic-bezier(.16, 1, .3, 1); }
+.projekt:hover { transform: translateY(-6px); box-shadow: var(--schatten-hoch); border-color: color-mix(in oklab, var(--violett) 35%, var(--linie)); }
+.projekt:hover .vorschau iframe { transform: scale(calc(var(--s, .25) * 1.04)); }
+.projekt-text { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.projekt h3 { margin: 0; font-size: 1.28rem; line-height: 1.25; display: flex; gap: 8px; align-items: baseline; }
+.projekt h3 .extern { width: .8em; height: .8em; color: var(--leise); opacity: 0; transform: translate(-4px, 2px); transition: opacity .3s, transform .4s cubic-bezier(.16, 1, .3, 1); }
+.projekt:hover h3 .extern { opacity: 1; transform: translate(0, 0); }
+.projekt-text p { margin: 6px 0 16px; color: var(--leise); font-size: .95rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.projekt-fuss { margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--leise); }
+.projekt-fuss b { color: var(--tinte); font-weight: 600; }
+.karte-leer { aspect-ratio: 4 / 3.6; border-radius: var(--r); background: linear-gradient(100deg, var(--flaeche-2) 30%, var(--flaeche) 50%, var(--flaeche-2) 70%) 0 0 / 300% 100%; animation: schimmer 1.6s linear infinite; }
+@keyframes schimmer { to { background-position: -150% 0; } }
+.galerie-hinweis { color: var(--leise); grid-column: 1 / -1; padding: 40px 0; }
+.mehr { text-align: center; margin-top: 36px; }
+
+/* ---------- So geht's ---------- */
+.schritte { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; counter-reset: s; }
+.schritte::before { content: ""; position: absolute; top: 27px; left: 28px; right: calc(33.333% - 28px); height: 2px; background: var(--verlauf); opacity: .35; border-radius: 2px; }
+.schritte li { position: relative; counter-increment: s; }
+.schritt-ic { position: relative; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #fff; background: var(--verlauf); box-shadow: 0 10px 20px -10px rgba(15, 23, 42, .45); }
+.schritt-ic .ic { width: 24px; height: 24px; }
+.schritt-ic::after { content: counter(s); position: absolute; right: -8px; top: -8px; width: 24px; height: 24px; border-radius: 50%; background: var(--flaeche); color: var(--tinte); font: 700 .78rem/24px "Fredoka", sans-serif; text-align: center; box-shadow: var(--schatten); }
+.schritte h3 { margin: 20px 0 6px; font-size: 1.3rem; }
+.schritte p { margin: 0; color: var(--leise); max-width: 26em; }
+.fakten { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 48px; }
+.fakten p { margin: 0; display: inline-flex; gap: 8px; align-items: center; padding: 10px 16px; border-radius: 999px; background: var(--flaeche); border: 1px solid var(--linie); font-size: .9rem; color: var(--text); }
+.fakten .ic { color: var(--violett); }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin: 40px 0 72px; }
+
+/* ---------- Schmal ---------- */
+@media (max-width: 900px) {
+  .held { padding: 120px 16px 64px; }
+  .held-innen { grid-template-columns: 1fr; gap: 40px; }
+  .login { max-width: 480px; }
+}
+@media (max-width: 720px) {
+  .schritte { grid-template-columns: 1fr; gap: 28px; }
+  .schritte::before { top: 28px; bottom: 28px; left: 27px; right: auto; width: 2px; height: auto; }
+  .schritte li { padding-left: 76px; min-height: 56px; }
+  .schritt-ic { position: absolute; left: 0; top: 0; }
+  .schritte h3 { margin-top: 2px; }
+  .abschnitt { padding-top: 72px; }
+  .login-innen { padding: 24px 20px 20px; }
+}
+@media (prefers-color-scheme: dark) { .login, .schritt-ic { box-shadow: 0 18px 40px -16px rgba(0, 0, 0, .85); } }

@@ -3,48 +3,239 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skill Us Now – Wir bauen zusammen</title>
-  <meta name="description" content="Das Community-Projekt von Skill Me Now: Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte.">
-  <link rel="stylesheet" href="assets/stadt.css">
+  <title>Skill Us Now – Bau deine Website mit deiner KI</title>
+  <meta name="description" content="Das Community-Projekt von Skill Me Now: Teilnehmende bauen mit ihrer eigenen KI echte Websites – jede unter ihrer eigenen Adresse.">
+  <link rel="icon" href="assets/marke.png">
+  <link rel="preload" href="assets/fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/sun.css">
+  <link rel="stylesheet" href="assets/startseite.css">
 </head>
 <body>
-  <header class="kopf">
-    <div class="balken"></div>
-    <h1>Skill <span>Us</span> Now</h1>
-    <p class="lead">Das Community-Projekt von Skill Me Now. Teilnehmende bauen mit ihrer eigenen KI echte Web-Projekte – jedes unter seiner eigenen Adresse.</p>
-    <p class="zahl" id="zahl">&nbsp;</p>
-    <a class="knopf" href="/start">Anmelden & Projekt anlegen</a>
-    <p class="knopf-hinweis">Für Teilnehmende und das Team von Skill Me Now</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-pfeil" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-runter" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-extern" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></symbol>
+    <symbol id="i-schloss" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-leute" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6"/></symbol>
+    <symbol id="i-schluessel" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3M16 7l3 3M14 9l2 2"/></symbol>
+    <symbol id="i-funken" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-welt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-schild" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-raus" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 16l-4-4 4-4M6 12h10"/></symbol>
+  </svg>
+
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a class="marke" href="/"><img src="assets/marke.png" alt="" width="20" height="24">Skill Us Now</a>
+    <div class="nav-links">
+      <a href="#projekte">Projekte</a>
+      <a href="#so-gehts">So geht's</a>
+      <a href="anleitung/">Anleitung</a>
+    </div>
+    <div class="nav-rechts" id="nav-rechts">
+      <a class="knopf kompakt" href="#anmelden" id="nav-anmelden" data-fokus-login>Anmelden</a>
+    </div>
+  </nav>
+
+  <header class="held">
+    <svg class="wellen" viewBox="0 0 1440 560" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="wl" x1="0" x2="1"><stop offset="0" stop-color="#d946ef"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+      <g fill="none" stroke="url(#wl)" stroke-width="1.2">
+        <path d="M-20 420C220 330 380 470 640 400S1060 250 1460 330"/><path d="M-20 440C230 350 390 490 650 420S1070 270 1460 350"/>
+        <path d="M-20 460C240 370 400 510 660 440S1080 290 1460 370"/><path d="M-20 480C250 390 410 530 670 460S1090 310 1460 390"/>
+        <path d="M-20 500C260 410 420 550 680 480S1100 330 1460 410"/><path d="M-20 520C270 430 430 570 690 500S1110 350 1460 430"/>
+      </g>
+    </svg>
+    <div class="held-innen">
+      <div class="held-text">
+        <h1>Bau deine eigene Website <em>mit deiner KI</em></h1>
+        <p class="lead">Teilnehmende und das Team von Skill Me Now bauen hier echte Web-Projekte – mit Claude, ChatGPT oder Codex. Jedes Projekt ist sofort online, unter seiner eigenen Adresse.</p>
+        <div class="held-knoepfe">
+          <a class="knopf" href="#anmelden" data-fokus-login>Jetzt loslegen <svg class="ic"><use href="#i-pfeil"/></svg></a>
+          <a class="knopf hell" href="#projekte">Projekte ansehen <svg class="ic"><use href="#i-runter"/></svg></a>
+        </div>
+        <p class="held-zahl" id="zahl" aria-live="polite">&nbsp;</p>
+      </div>
+
+      <!-- Anmelden direkt auf der Startseite -->
+      <aside class="login" id="anmelden" aria-labelledby="login-titel">
+        <div class="login-innen">
+          <div id="l-anon">
+            <h2 id="login-titel">Anmelden</h2>
+            <p class="klein">Mit der E-Mail-Adresse deines Skill-Me-Now-Kontos. Du bekommst einen Code – ganz ohne Passwort.</p>
+            <form id="f-mail" novalidate>
+              <label class="feld" for="l-email">E-Mail-Adresse</label>
+              <div class="eingabe-icon"><svg class="ic"><use href="#i-mail"/></svg><input id="l-email" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.de"></div>
+              <button class="knopf voll">Code anfordern</button>
+            </form>
+            <form id="f-code" hidden novalidate>
+              <p class="code-hinweis" id="code-hinweis"></p>
+              <label class="feld" for="l-code">Code aus der E-Mail <small>(schau auch im Spam)</small></label>
+              <input id="l-code" class="code-feld" name="code" inputmode="numeric" maxlength="6" required autocomplete="one-time-code" placeholder="••••••">
+              <button class="knopf voll">Anmelden</button>
+              <button type="button" class="textknopf" id="andere-mail">Andere Adresse verwenden</button>
+            </form>
+            <div class="meldung" id="m-login" role="status"></div>
+            <p class="login-fuss"><svg class="ic"><use href="#i-schild"/></svg> Nur für Teilnehmende und das Team von Skill Me Now.</p>
+          </div>
+
+          <div id="l-ich" hidden>
+            <div class="ich-kopf"><span class="avatar" id="ich-avatar"></span><div><h2>Willkommen zurück</h2><p class="klein" id="ich-mail"></p></div></div>
+            <ul class="ich-liste" id="ich-liste"></ul>
+            <div class="ich-knoepfe">
+              <a class="knopf voll" href="/start">Meine Projekte <svg class="ic"><use href="#i-pfeil"/></svg></a>
+              <a class="knopf hell voll" href="/start#neu"><svg class="ic"><use href="#i-plus"/></svg> Neues Projekt</a>
+            </div>
+            <button type="button" class="textknopf" id="abmelden"><svg class="ic"><use href="#i-raus"/></svg> Abmelden</button>
+          </div>
+        </div>
+      </aside>
+    </div>
   </header>
 
   <main>
-    <h2>Die Projekte</h2>
-    <section class="stadt" id="projekte">
-      <p class="leer">Projekte werden geladen …</p>
+    <section class="abschnitt" id="projekte" aria-labelledby="projekte-titel">
+      <div class="abschnitt-kopf">
+        <h2 id="projekte-titel">Was hier gerade entsteht</h2>
+        <p>Jede Karte zeigt die echte Seite, live. Klick drauf, um sie zu öffnen.</p>
+      </div>
+      <div class="galerie" id="galerie" aria-busy="true">
+        <div class="karte-leer"></div><div class="karte-leer"></div><div class="karte-leer"></div>
+      </div>
+      <div class="mehr" id="mehr" hidden><button class="knopf hell" type="button">Alle Projekte zeigen</button></div>
     </section>
 
-    <section class="mitmachen">
-      <h2>Mitmachen</h2>
-      <p>Du bist Teilnehmerin, Teilnehmer oder im Team von Skill Me Now? Dann kannst du hier eigene Projekte veröffentlichen.
-        <a href="/start">Melde dich an</a> – ein Assistent führt dich Schritt für Schritt durch die Einrichtung, egal ob Mac oder Windows, mit Claude oder ChatGPT.</p>
+    <section class="abschnitt" id="so-gehts" aria-labelledby="so-titel">
+      <div class="abschnitt-kopf">
+        <h2 id="so-titel">In drei Schritten online</h2>
+        <p>Ein Assistent führt dich durch alles – egal ob Mac oder Windows. Etwa zehn Minuten.</p>
+      </div>
+      <ol class="schritte">
+        <li><span class="schritt-ic"><svg class="ic"><use href="#i-mail"/></svg></span><h3>Anmelden</h3><p>Mit deinem Skill-Me-Now-Konto. Der Code kommt per Mail.</p></li>
+        <li><span class="schritt-ic"><svg class="ic"><use href="#i-schluessel"/></svg></span><h3>Schlüssel einrichten</h3><p>Einmal kopieren, einmal einfügen – damit darf deine KI an dein Projekt.</p></li>
+        <li><span class="schritt-ic"><svg class="ic"><use href="#i-funken"/></svg></span><h3>Bauen lassen</h3><p>Deine KI baut die Seite. Sie ist sofort live unter <b>name.skillusnow.de</b>.</p></li>
+      </ol>
+      <div class="fakten">
+        <p><svg class="ic"><use href="#i-welt"/></svg> Websites aus HTML, CSS und JavaScript</p>
+        <p><svg class="ic"><use href="#i-schild"/></svg> Impressum und Datenschutz kommen automatisch dazu</p>
+        <p><svg class="ic"><use href="#i-leute"/></svg> Gemeinsam an einem Projekt bauen</p>
+      </div>
+      <div class="cta"><a class="knopf" href="#anmelden" data-fokus-login>Eigenes Projekt starten <svg class="ic"><use href="#i-pfeil"/></svg></a><a class="textknopf" href="anleitung/">Erst die Anleitung lesen</a></div>
     </section>
   </main>
 
-  <footer>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a> · <a href="/start">Anmelden</a> · <a href="anleitung/">Anleitung</a> · <a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a> · <a href="https://github.com/Skill-Us-Now/website">GitHub</a></footer>
+  <footer class="fuss">
+    <span>Ein Projekt von <a href="https://skillmenow.de">Skill Me Now</a></span>
+    <nav aria-label="Rechtliches"><a href="anleitung/">Anleitung</a><a href="impressum/">Impressum</a><a href="datenschutz/">Datenschutz</a><a href="https://github.com/Skill-Us-Now/website">GitHub</a></nav>
+  </footer>
 
   <script>
+    const $ = (s) => document.querySelector(s);
     const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-    const datum = (iso) => new Date(iso).toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+    const datum = (iso) => new Date(iso).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+    const initiale = (n) => (String(n || "?").trim()[0] || "?").toUpperCase();
+    const icon = (n) => `<svg class="ic"><use href="#i-${n}"/></svg>`;
+    const api = async (pfad, daten) => {
+      const r = await fetch(pfad, daten ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(daten) } : {});
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw Object.assign(new Error(j.fehler || "Das hat nicht geklappt. Bitte noch einmal versuchen."), { status: r.status });
+      return j;
+    };
+
+    // ---------- Live-Vorschauen: Seite in 1280 px laden, auf Kartenbreite verkleinern, erst laden wenn sichtbar ----------
+    const masse = new ResizeObserver((eintraege) => eintraege.forEach((e) => e.target.style.setProperty("--s", e.contentRect.width / 1280)));
+    const sichtbar = new IntersectionObserver((eintraege) => eintraege.forEach((e) => {
+      if (!e.isIntersecting) return;
+      sichtbar.unobserve(e.target);
+      const f = document.createElement("iframe");
+      // Projektseiten liegen auf eigener Subdomain (fremde Herkunft) – sie kommen nicht an diese Seite heran.
+      // Zusätzlich: keine Pop-ups, keine Formulare, kein Wegnavigieren der Startseite.
+      f.setAttribute("sandbox", "allow-scripts allow-same-origin");
+      f.setAttribute("allow", "autoplay 'none'; camera 'none'; microphone 'none'; geolocation 'none'");
+      f.setAttribute("tabindex", "-1"); f.setAttribute("aria-hidden", "true"); f.setAttribute("loading", "lazy");
+      f.title = ""; f.src = e.target.dataset.src + "/";
+      f.onload = () => f.classList.add("da");
+      e.target.appendChild(f);
+    }), { rootMargin: "200px" });
+    const vorschau = (el) => { masse.observe(el); sichtbar.observe(el); };
+
+    // ---------- Galerie ----------
+    let alle = [];
+    const karte = (p) => `
+      <a class="projekt" href="${esc(p.url)}" target="_blank" rel="noopener">
+        <div class="rahmen">
+          <div class="adressleiste"><i></i><i></i><i></i><span>${esc(p.url.replace("https://", ""))}</span></div>
+          <div class="vorschau" data-src="${esc(p.url)}"><div class="platzhalter"><span>${esc(initiale(p.titel))}</span></div></div>
+        </div>
+        <div class="projekt-text">
+          <h3>${esc(p.titel)} <svg class="ic extern"><use href="#i-extern"/></svg></h3>
+          <p>${esc(p.beschreibung)}</p>
+          <div class="projekt-fuss"><span class="avatar mini">${esc(initiale(p.von))}</span><span><b>${esc(p.von)}</b> · seit ${datum(p.erstellt)}</span></div>
+        </div>
+      </a>`;
+    function zeigeGalerie(n) {
+      const g = $("#galerie");
+      g.innerHTML = alle.slice(0, n).map(karte).join("");
+      g.querySelectorAll(".vorschau").forEach(vorschau);
+      $("#mehr").hidden = alle.length <= n;
+      g.setAttribute("aria-busy", "false");
+    }
     fetch("/api/projekte.json").then((r) => r.json()).then((liste) => {
-      document.getElementById("zahl").innerHTML = liste.length === 1 ? "<b>1</b> Projekt ist online" : `<b>${liste.length}</b> Projekte sind online`;
-      document.getElementById("projekte").innerHTML = liste.length ? liste.map((p) => `
-        <a class="haus-kachel" href="${esc(p.url)}" target="_blank" rel="noopener">
-          <strong>${esc(p.titel)}</strong>
-          <span class="adresse">${esc(p.url.replace("https://", ""))}</span>
-          <small>${esc(p.beschreibung)}</small>
-          <span class="von">von ${esc(p.von)} · online seit ${datum(p.erstellt)}</span>
-        </a>`).join("") : '<p class="leer">Noch keine Projekte – bald geht\'s los.</p>';
-    }).catch(() => { document.getElementById("projekte").innerHTML = '<p class="leer">Projekte konnten gerade nicht geladen werden.</p>'; });
+      alle = liste;
+      const leute = new Set(liste.map((p) => p.von)).size;
+      $("#zahl").innerHTML = liste.length
+        ? `<span class="puls"></span><span><b>${liste.length}</b> ${liste.length === 1 ? "Projekt ist" : "Projekte sind"} online · gebaut von <b>${leute}</b> ${leute === 1 ? "Person" : "Personen"}</span>`
+        : "";
+      if (!liste.length) { $("#galerie").innerHTML = '<p class="galerie-hinweis">Noch ist hier nichts online – das erste Projekt könnte deins sein.</p>'; $("#galerie").setAttribute("aria-busy", "false"); return; }
+      zeigeGalerie(9);
+    }).catch(() => { $("#galerie").innerHTML = '<p class="galerie-hinweis">Die Projekte konnten gerade nicht geladen werden. Lade die Seite gleich noch einmal.</p>'; });
+    $("#mehr button").onclick = () => zeigeGalerie(alle.length);
+
+    // ---------- Anmelden ----------
+    let email = "";
+    const meldung = (text, art = "err") => { $("#m-login").className = "meldung " + art; $("#m-login").textContent = text; };
+    const beschaeftigt = (form, an) => { const b = form.querySelector(".knopf"); b.disabled = an; b.dataset.text ??= b.textContent; b.textContent = an ? "Einen Moment …" : b.dataset.text; };
+
+    $("#f-mail").onsubmit = async (e) => {
+      e.preventDefault(); meldung("");
+      email = e.target.email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return meldung("Bitte gib eine gültige E-Mail-Adresse ein.");
+      beschaeftigt(e.target, true);
+      try {
+        await api("/api/anmelden", { email });
+        $("#f-mail").hidden = true; $("#f-code").hidden = false;
+        $("#code-hinweis").innerHTML = `Wenn <b>${esc(email)}</b> zu einem Skill-Me-Now-Konto gehört, ist der Code jetzt unterwegs.`;
+        $("#l-code").focus();
+      } catch (x) { meldung(x.message); } finally { beschaeftigt(e.target, false); }
+    };
+    $("#l-code").oninput = (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 6); if (e.target.value.length === 6) $("#f-code").requestSubmit(); };
+    $("#f-code").onsubmit = async (e) => {
+      e.preventDefault(); meldung("");
+      if ($("#l-code").value.length !== 6) return meldung("Der Code hat 6 Ziffern.");
+      beschaeftigt(e.target, true);
+      try { await api("/api/bestaetigen", { email, code: $("#l-code").value }); await ichLaden(); }
+      catch (x) { meldung(x.message); $("#l-code").select(); } finally { beschaeftigt(e.target, false); }
+    };
+    $("#andere-mail").onclick = () => { $("#f-code").hidden = true; $("#f-mail").hidden = false; $("#l-code").value = ""; meldung(""); $("#l-email").focus(); };
+    document.querySelectorAll("[data-fokus-login]").forEach((a) => a.addEventListener("click", () => setTimeout(() => { const f = $("#l-email"); if (f && !$("#l-anon").hidden) f.focus({ preventScroll: true }); }, 450)));
+
+    async function ichLaden() {
+      let ich;
+      try { ich = await api("/api/ich"); } catch { return; }
+      const name = ich.email.split("@")[0];
+      $("#l-anon").hidden = true; $("#l-ich").hidden = false;
+      $("#ich-avatar").textContent = initiale(name);
+      $("#ich-mail").textContent = ich.email;
+      const aktiv = ich.projekte.filter((p) => !p.archiviert);
+      $("#ich-liste").innerHTML = aktiv.length
+        ? aktiv.slice(0, 4).map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="avatar mini">${esc(initiale(p.titel))}</span><span class="ich-titel">${esc(p.titel)}</span>${p.privat ? `<span class="chip privat">${icon("schloss")} privat</span>` : p.inhaber ? '<span class="chip online">online</span>' : `<span class="chip geteilt">${icon("leute")} geteilt</span>`}</a></li>`).join("")
+          + (aktiv.length > 4 ? `<li class="klein">und ${aktiv.length - 4} weitere</li>` : "")
+        : '<li class="klein">Du hast noch kein Projekt. Leg gleich los!</li>';
+      $("#nav-rechts").innerHTML = `<a class="knopf kompakt blau" href="/start">Meine Projekte</a><span class="avatar" title="${esc(ich.email)}">${esc(initiale(name))}</span>`;
+    }
+    $("#abmelden").onclick = async () => { await api("/api/abmelden", {}).catch(() => {}); location.reload(); };
+    ichLaden();
   </script>
 </body>
 </html>
