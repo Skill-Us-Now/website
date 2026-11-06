@@ -37,8 +37,8 @@
 
   <h2 class="schritt" id="schluessel"><span>2</span> Deinen Schlüssel erzeugen</h2>
   <p>Statt eines Passworts nutzt du einen <b>Schlüssel</b>. Er besteht aus zwei Teilen: einem <b>geheimen Teil</b>, der auf deinem Computer bleibt, und einem <b>öffentlichen Teil</b>, den du uns gibst – wie ein Schloss, zu dem nur du den Schlüssel hast. Kopiere diesen Befehl ins Terminal und drücke Enter. Ersetze <code>dein-name</code> durch deinen Vornamen.</p>
-  <div class="os mac"><div class="befehl"><code>ssh-keygen -t ed25519 -f ~/.ssh/skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div></div>
-  <div class="os win"><div class="befehl"><code>ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div>
+  <div class="os mac"><div class="befehl"><code>mkdir -p ~/.ssh &amp;&amp; ssh-keygen -t ed25519 -f ~/.ssh/skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div></div>
+  <div class="os win"><div class="befehl"><code>mkdir -Force $env:USERPROFILE\.ssh | Out-Null; ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\skillusnow -C "dein-name"</code><button class="kopieren">Kopieren</button></div>
     <p class="hinweis">Kommt „ssh-keygen wurde nicht erkannt“? Dann: Einstellungen → System → Optionale Features → Feature hinzufügen → <b>OpenSSH-Client</b> installieren, PowerShell neu öffnen.</p></div>
   <p>Das Terminal fragt nach einem <b>Passwort (passphrase)</b>: Drücke einfach zweimal <kbd>Enter</kbd>, damit deine KI später ohne Nachfrage arbeiten kann.</p>
   <p class="warnung">🔒 Den <b>geheimen Teil</b> (die Datei <code>skillusnow</code> <i>ohne</i> .pub) gibst du niemals weiter – auch nicht an eine KI im Browser.</p>
