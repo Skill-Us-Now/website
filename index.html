@@ -9,6 +9,7 @@
   <link rel="preload" href="assets/fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/sun.css">
   <link rel="stylesheet" href="assets/startseite.css">
+  <script src="assets/konto.js"></script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -232,7 +233,7 @@
         ? aktiv.slice(0, 4).map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="avatar mini">${esc(initiale(p.titel))}</span><span class="ich-titel">${esc(p.titel)}</span>${p.privat ? `<span class="chip privat">${icon("schloss")} privat</span>` : p.inhaber ? '<span class="chip online">online</span>' : `<span class="chip geteilt">${icon("leute")} geteilt</span>`}</a></li>`).join("")
           + (aktiv.length > 4 ? `<li class="klein">und ${aktiv.length - 4} weitere</li>` : "")
         : '<li class="klein">Du hast noch kein Projekt. Leg gleich los!</li>';
-      $("#nav-rechts").innerHTML = `<a class="knopf kompakt blau" href="/start">Meine Projekte</a><span class="avatar" title="${esc(ich.email)}">${esc(initiale(name))}</span>`;
+      kontoMenue($("#nav-rechts"), ich);
     }
     $("#abmelden").onclick = async () => { await api("/api/abmelden", {}).catch(() => {}); location.reload(); };
     ichLaden();
