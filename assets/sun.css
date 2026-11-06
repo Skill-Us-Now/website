@@ -52,8 +52,8 @@ img, svg { display: block; }
 /* ---------- Knöpfe ---------- */
 .knopf { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 13px 24px; font: 600 .97rem/1.2 "Inter", sans-serif;
   text-decoration: none; cursor: pointer; color: #fff; background: linear-gradient(135deg, #b62bc9, #9a1aa8);
-  box-shadow: 0 6px 16px -6px rgba(201, 34, 189, .55); transition: transform .25s cubic-bezier(.16, 1, .3, 1), box-shadow .25s, filter .2s; }
-.knopf:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(201, 34, 189, .6); }
+  box-shadow: 0 6px 14px -6px rgba(15, 23, 42, .35); transition: transform .25s cubic-bezier(.16, 1, .3, 1), box-shadow .25s, filter .2s; }
+.knopf:hover { transform: translateY(-2px); box-shadow: 0 12px 22px -8px rgba(15, 23, 42, .4); }
 .knopf:active { transform: translateY(0); }
 .knopf:disabled { opacity: .45; cursor: default; transform: none; box-shadow: none; }
 .knopf.kompakt { padding: 9px 18px; font-size: .9rem; }
