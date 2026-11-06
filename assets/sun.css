@@ -100,5 +100,29 @@ input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--magenta)
 .fuss nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .fuss a { color: inherit; text-decoration: none; } .fuss a:hover { color: var(--tinte); text-decoration: underline; }
 .knopf { white-space: nowrap; }
-@media (max-width: 480px) { .nav-rechts .avatar { display: none; } .marke { font-size: 1rem; } }
+@media (max-width: 480px) { .marke { font-size: 1rem; } }
 @media (prefers-color-scheme: dark) { .knopf, .knopf:hover { box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .8); } }
+
+/* ---------- Konto-Menü oben rechts ---------- */
+.konto { position: relative; }
+.konto-knopf { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--tinte); font: 500 .93rem "Inter", sans-serif; cursor: pointer; transition: background .2s, border-color .2s; }
+.konto-knopf:hover, .konto-knopf[aria-expanded="true"] { background: var(--flaeche-2); border-color: var(--linie); }
+.konto-knopf .avatar { width: 34px; height: 34px; font-size: .85rem; }
+.konto-knopf > .ic { width: 16px; height: 16px; color: var(--leise); transition: transform .3s cubic-bezier(.16, 1, .3, 1); }
+.konto-knopf[aria-expanded="true"] > .ic { transform: rotate(180deg); }
+.konto-name { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.konto-menue { position: absolute; right: 0; top: calc(100% + 12px); width: 280px; padding: 8px; border-radius: 18px; background: var(--flaeche); border: 1px solid var(--linie); box-shadow: var(--schatten-hoch); z-index: 60;
+  transform-origin: top right; animation: menue-auf .28s cubic-bezier(.16, 1, .3, 1); }
+@keyframes menue-auf { from { opacity: 0; transform: translateY(-6px) scale(.97); } }
+.konto-kopf { display: flex; gap: 12px; align-items: center; padding: 10px 10px 14px; margin-bottom: 6px; border-bottom: 1px solid var(--linie); }
+.konto-kopf .avatar.gross { width: 42px; height: 42px; font-size: 1.05rem; }
+.konto-kopf div { min-width: 0; }
+.konto-kopf b { display: block; color: var(--tinte); font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.konto-kopf span { font-size: .8rem; color: var(--leise); }
+.konto-menue [role="menuitem"] { display: flex; align-items: center; gap: 11px; width: 100%; padding: 10px 12px; border: 0; border-radius: 11px; background: none; color: var(--text); font: 500 .92rem "Inter", sans-serif; text-decoration: none; cursor: pointer; text-align: left; }
+.konto-menue [role="menuitem"] .ic { color: var(--leise); }
+.konto-menue [role="menuitem"]:hover, .konto-menue [role="menuitem"]:focus-visible { background: var(--flaeche-2); color: var(--tinte); outline: none; }
+.konto-menue [aria-current="page"] { color: var(--tinte); font-weight: 600; }
+.konto-menue hr { border: 0; border-top: 1px solid var(--linie); margin: 6px 4px; }
+.konto-raus:hover, .konto-raus:hover .ic { color: var(--fehler) !important; }
+@media (max-width: 480px) { .konto-name { display: none; } .konto-knopf { padding-right: 8px; } .konto-menue { width: min(280px, calc(100vw - 40px)); } }
