@@ -11,7 +11,7 @@
     buch: "M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM8 7h6",
     raus: "M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 16l-4-4 4-4M6 12h10",
   };
-  const ROLLE = { admin: "Admin", dozent: "Dozent", teilnehmer: "Teilnehmer" };
+  const ROLLE = { admin: "Admin", dozent: "Dozent", teilnehmer: "Teilnehmer", gast: "Gast" };
 
   window.kontoMenue = function (ziel, ich, opt = {}) {
     const name = ich.email.split("@")[0];
