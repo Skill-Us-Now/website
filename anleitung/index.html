@@ -89,10 +89,37 @@
     </section>
   </div>
 
+  <h2 id="zusammen">Gemeinsam an einem Projekt arbeiten</h2>
+  <p>Du kannst dein Projekt mit anderen aus der Community teilen. Jede Person arbeitet mit <b>ihrem eigenen Schlüssel</b> und ihrer eigenen KI – im Verlauf sieht man, wer was geändert hat.</p>
+  <div class="zwei">
+    <section class="kasten">
+      <h3>Du lädst ein</h3>
+      <ol>
+        <li>Öffne <a href="/start" target="_blank"><b>skillusnow.de/start</b></a> und klicke bei deinem Projekt auf <b>Teilen</b>.</li>
+        <li>Gib die E-Mail-Adresse ein, mit der die Person im Skill-Me-Now-Campus angemeldet ist, und klicke „Einladen“.</li>
+        <li>Die Person bekommt eine Mail. Sie kann danach mitbauen und auch die private Vorschau ansehen.</li>
+        <li><b>Entfernen</b> wirkt sofort: Zugang weg, laufende Verbindungen dieser Person werden beendet. Du siehst danach, was sie zuletzt geändert hat.</li>
+      </ol>
+      <p class="hinweis">Teile nur mit Leuten, denen du vertraust – sie können alle Dateien im Projekt ändern.</p>
+    </section>
+    <section class="kasten">
+      <h3>Du wurdest eingeladen</h3>
+      <ol>
+        <li>Erzeuge deinen <b>eigenen</b> Schlüssel wie in <a href="#schluessel">Schritt 2</a> – nutze nie den Schlüssel einer anderen Person.</li>
+        <li>Melde dich auf <a href="/start" target="_blank"><b>skillusnow.de/start</b></a> an. Beim geteilten Projekt klickst du auf <b>Zugang einrichten</b>.</li>
+        <li>Füge nur den Inhalt der <code>.pub</code>-Datei ein – eine einzige Zeile, die mit <code>ssh-ed25519</code> beginnt.</li>
+        <li>Danach verbindest du dich wie in Schritt 5 mit dem Projektnamen (z. B. <code>p-gewichttracker</code>).</li>
+      </ol>
+    </section>
+  </div>
+  <p><b>Damit nichts verloren geht:</b> Jedes Projekt hat einen Git-Verlauf. Deine KI prüft vor dem Arbeiten den aktuellen Stand (<code>git status</code>) und speichert jede fertige Änderung mit <code>git commit</code> – dein Name wird automatisch eingetragen. Das steht auch in den Regeln (AGENTS.md), die deine KI liest.</p>
+
   <h2>Wenn etwas nicht klappt</h2>
   <dl class="faq">
     <dt>„Permission denied (publickey)“</dt>
     <dd>Der Schlüssel passt nicht. Prüfe den Projektnamen (mit <code>p-</code> davor) und ob du in Schritt 3 den Inhalt der <code>.pub</code>-Datei kopiert hast. Hilft das nicht, melde dich beim Team.</dd>
+    <dt>Mein Schlüssel wird abgelehnt</dt>
+    <dd>Erlaubt sind nur öffentliche Schlüssel vom Typ <code>ssh-ed25519</code> (oder <code>ssh-rsa</code> mit mindestens 3072 Bit) – genau eine Zeile, ohne Zusätze davor. Am einfachsten erzeugst du mit dem Befehl aus Schritt 2 einen neuen. Den geheimen Teil (ohne .pub) nimmt die Seite aus Sicherheitsgründen nie an.</dd>
     <dt>Ich sehe meine Änderung nicht</dt>
     <dd>Lade die Seite ohne Zwischenspeicher neu: Mac <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>R</kbd>, Windows <kbd>Strg</kbd> + <kbd>F5</kbd>.</dd>
     <dt>Meine KI hat etwas kaputt gemacht</dt>
